@@ -10,6 +10,8 @@ introMsg db 'Chao mung den voi Tic Tac Toe! $'
 choiceMsg db 'Lua chon vi tri danh dau, ban la nguoi choi $'
 resultMsg db 'Nguoi choi thang la: $'
 drawMsg db 'Hoa! $'
+wrongInput db 'Ban da nhap sai ki tu! Vui long nhap lai: $'
+takenBox db 'O nay da duoc chon roi! Vui long nhap lai. $'
 player db ? 
 .Code
 Main proc
@@ -18,6 +20,9 @@ Main proc
     
     mov cx,9 ; toi da 9 luot choi
     x: ; dung de lap luot choi
+        cmp cx,0
+        je endGame
+        ; Kiem tra neu cx = 0 -> end
         call clearScr 
         call printIntroMsg
         call printArr
@@ -41,25 +46,28 @@ Main proc
         call printChoiceMsg
         call readInput
         
-        push cx
-        ; push cx de su dung 2 vong lap
-        mov cx,9
-        mov bx,0
-        y: ; dung de duyet qua 9 o trong array  
-            cmp arr[bx],al 
-            je upd
-            jmp continue
-            upd:
-                mov dl,player
-                mov arr[bx],dl
-                ; neu i == input -> gan' arr[i] = player
-            continue: 
-                inc bx
-                loop y
-                pop cx
-                call checkWin
-                ; neu i != input -> loop de tang i, xong het se check win     
-        loop x
+        mov bl,al
+        sub bl,'1' ; chuyen '1' -> '9' thanh 0 -> 8 (index)
+        cmp arr[bx],'x'
+        je alreadyTaken
+        cmp arr[bx],'o'
+        je alreadyTaken
+        ; Kiem tra o do da duoc danh dau chua
+        
+        mov dl,player
+        mov arr[bx],dl
+        call checkWin
+        
+        dec cx
+        jmp x
+        
+        alreadyTaken:
+            call endLine
+            call printTakenMsg
+            jmp inValid
+        endGame:
+        call endLine
+        call printArr
         call printDraw ; Neu loop xong khong ai win -> hoa
            
            
@@ -103,7 +111,9 @@ Main proc
             je valid
             cmp al,'9'
             je valid
-            jmp inValid
+            
+            call printWrongInput
+            jmp readInput
             valid:
         ret
         
@@ -134,6 +144,35 @@ Main proc
             
             call printSpace
         ret                
+        
+        printWrongInput:
+            call endLine
+            call endLine
+            lea dx,wrongInput
+            mov ah,9
+            int 21h
+            call endLine
+            lea dx,choiceMsg
+            mov ah,9
+            int 21h
+            mov dl,player
+            mov ah,2
+            int 21h  
+            
+            mov dl,58 ; in dau ':'
+            mov ah,2
+            int 21h
+            
+            call printSpace
+        ret 
+        
+        printTakenMsg:
+            call endLine
+            lea dx,takenBox
+            mov ah,9
+            int 21h
+           
+        ret 
         
         printArr:
             push cx
