@@ -138,7 +138,8 @@ readMenuChoice:
     call endLine
     lea dx,wrongInput
     mov ah,9
-    int 21h
+    int 21h 
+    
     call endLine
     jmp readMenuChoice
     
@@ -150,21 +151,25 @@ displayInstructions:
     call endLine
     lea dx,instructionTitle
     mov ah,9
-    int 21h
+    int 21h 
+    
     call endLine
     call endLine
     
     lea dx,instruction1
     mov ah,9
-    int 21h
+    int 21h  
+    
     call endLine
     lea dx,instruction2
     mov ah,9
-    int 21h
+    int 21h  
+    
     call endLine
     lea dx,instruction3
     mov ah,9
-    int 21h
+    int 21h 
+    
     call endLine
     lea dx,instruction4
     mov ah,9
@@ -192,66 +197,80 @@ printSampleBoard:
     ; Hàng 1
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'1'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'2'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'3'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
-    call endLine
+    int 21h  
     
+    call endLine
     lea dx,boardFrame
     mov ah,9
-    int 21h
+    int 21h  
+    
     call endLine
     
     ; Hàng 2
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'4'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
     int 21h
+    
     call printSpaces3
     mov dl,'5'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'6'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call endLine
     
     lea dx,boardFrame
@@ -262,36 +281,44 @@ printSampleBoard:
     ; Hàng 3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'7'
     mov ah,2
     int 21h
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'8'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h 
+    
     call printSpaces3
     mov dl,'9'
     mov ah,2
     int 21h
+    
     call printSpaces3
     mov dl,'|'
     mov ah,2
-    int 21h
+    int 21h  
+    
     call endLine
     
     lea dx,boardFrame
     mov ah,9
-    int 21h
+    int 21h 
+    
     call endLine
 ret
 
@@ -408,8 +435,7 @@ printBoard:
         mov dl,'|'
         mov ah,2
         int 21h
-        
-        push cx
+
         mov cx,3
         colLoop:
             call printSpaces3
@@ -422,10 +448,7 @@ printBoard:
             int 21h
             inc bx
         loop colLoop
-        pop cx
-        
-        call endLine
-        
+        call endLine 
         pop cx
         
         cmp cx,1
@@ -471,7 +494,8 @@ playerMove:
         call endLine
         lea dx,takenBox
         mov ah,9
-        int 21h
+        int 21h   
+        
         call endLine
         jmp invalidMove
 ret
@@ -492,7 +516,8 @@ waitForKey:
     call endLine
     lea dx,continueMsg
     mov ah,9
-    int 21h
+    int 21h   
+    
     mov ah,1
     int 21h
 ret
