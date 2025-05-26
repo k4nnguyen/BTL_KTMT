@@ -10,7 +10,7 @@ crlf db 13,10,'$'
 ; Giao di?n messages
 gameTitle db  '************************************************$'
 welcomeMsg db '*          CHAO MUNG DEN VOI TIC TAC TOE       *$'
-teamMsg db    '*              TEAM _ - ASM PROJECT            *$'
+teamMsg db    '*              TEAM 8 - ASM PROJECT            *$'
 menuMsg db 'MENU CHINH:$'
 option1 db '1. Bat dau tro choi 2 nguoi$'
 option2 db '2. Huong dan choi$'

@@ -5,7 +5,7 @@
 ; ========== Giao di?n ==========
 gameTitle       db '===============================================$'
 welcome     db '*           CHUONG TRINH MAY TINH ASM          *$'
-team        db '*                 TEAM _ - PROJECT              *$'
+team        db '*                 TEAM 8 - PROJECT              *$'
 menu        db 'MENU CHINH:$'
 opt1        db '1. Thuc hien phep tinh$'
 opt2        db '2. Huong dan su dung$'
@@ -16,7 +16,7 @@ guideA      db 'Nhap 2 so va toan tu (+ - * /) de tinh toan.$'
 guideB      db 'Neu toan tu sai hoac chia 0, chuong trinh se thong bao.$'
 pressAny    db 'Nhan phim bat ky de quay lai menu...$'
 
-; ========== Bi?n x? lý ==========
+; ========== Bi?n x? lï¿½ ==========
 s1      db 6 dup(?)          
 s2      db 6 dup(?)       
 number1 dw 0                 
